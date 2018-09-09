@@ -315,6 +315,8 @@ class ComposerStaticInitb69f698dc998a66ca0ef1cb9f171b24e
     );
 
     public static $classMap = array (
+        'App\\Buyer' => __DIR__ . '/../..' . '/app/Buyer.php',
+        'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -333,11 +335,14 @@ class ComposerStaticInitb69f698dc998a66ca0ef1cb9f171b24e
         'App\\Notifications\\DatabaseNotification' => __DIR__ . '/../..' . '/app/Notifications/DatabaseNotification.php',
         'App\\Notifications\\MailNotification' => __DIR__ . '/../..' . '/app/Notifications/MailNotification.php',
         'App\\Notifications\\MarkdownNotification' => __DIR__ . '/../..' . '/app/Notifications/MarkdownNotification.php',
+        'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Seller' => __DIR__ . '/../..' . '/app/Seller.php',
+        'App\\Transaction' => __DIR__ . '/../..' . '/app/Transaction.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',

@@ -18,10 +18,10 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description',1000);
-            $table->string('quantity')->unsigned();
+            $table->integer('quantity')->unsigned();
             $table->string('image');
-            $table->integer('status')->default(Product::UNAVAILBALE_PRODUCT);
-            $table->string('seller_id')->unsigned();
+            $table->string('status')->default(Product::UNAVAILABLE_PRODUCT);
+            $table->integer('seller_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('seller_id')->references('id')->on('users');

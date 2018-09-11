@@ -10,8 +10,8 @@ class User extends Authenticatable
     use Notifiable;
 
 
-    const VERIFIED_USER = 1;
-    const UNVERIFIED_USER = 0;
+    const VERIFIED_USER = '1';
+    const UNVERIFIED_USER = '0';
 
     const ADMIN_USER = 'true';
     const REGULAR_USER = 'false';
@@ -40,6 +40,7 @@ class User extends Authenticatable
     ];
 
     public function isVerified(){
+        dd($this->verified , User::VERIFIED_USER,$this->verification_token);
         $this->verified == User::VERIFIED_USER;
     }
     public function isAdmin(){

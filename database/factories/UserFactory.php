@@ -2,6 +2,7 @@
 
 use App\Category;
 use App\Product;
+use App\Seller;
 use App\Transaction;
 use App\User;
 use Faker\Generator as Faker;

@@ -2,11 +2,17 @@
 
 namespace App\Exceptions;
 
+use App\Traits\ApiResponser;
+use App\Traits\ExceptionTrait;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
+    
+    use ApiResponser,ExceptionTrait;  
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -48,6 +54,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($request->wantsJson()){
+            return $this->findException($request,$exception);
+        }
         return parent::render($request, $exception);
+    }
+
+
+    protected function findException($req ,$exep){
+        return $this->returnExeption($req ,$exep);
     }
 }

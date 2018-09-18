@@ -7,15 +7,16 @@ use Illuminate\Support\Collection;
 
 trait ApiResponser
 {
-	private function SuccessResponse($data,$message='Success',$code=200){
+	protected function SuccessResponse($data,$message='Success',$code=200){
 		$result['error'] = [];
 		$result['success'] = 1;
-		$result['data']['message'] = $message;	
 		$result['data'] = $data;
+		// $result['data']['message'] = $message;	
 		return response()->json($result,$code);
 	}
 
-	protected function ErrorResponse($data,$message='Success',$code=400){
+	protected function ErrorResponse($message='Success',$code=400){
+
 		$result['error'] = $message;
 		$result['success'] = 0;
 		$result['data'] = [];

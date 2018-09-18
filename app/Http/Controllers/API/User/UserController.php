@@ -17,7 +17,7 @@ class UserController extends ApiController
     public function index()
     {
         $users = User::all();
-        return response()->json(['data'=>$users],200);
+        return $this->SuccessResponse($users);
     }
 
     /**
@@ -55,7 +55,7 @@ class UserController extends ApiController
         $user = User::create($data);
 
 
-        return response()->json(['data'=>$user],201);
+        return $this->SuccessResponse($user);
 
     }
 
@@ -68,7 +68,7 @@ class UserController extends ApiController
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return response()->json(['data'=>$user],200);
+        return $this->SuccessResponse($user);
     }
 
     /**
@@ -112,20 +112,19 @@ class UserController extends ApiController
             $user->verified = User::generateVerificationCode();
         }
         if($request->has('admin')){
-            dd($user->isVerified());
             if(!$user->isVerified()){
-        return response()->json(['error'=>"only verified user can change admin field",'code'=>409],409);
+                return $this->ErrorResponse("only verified user can change admin field",409);
             
             }
             $user->admin = $request->admin;
         }
         if(!$user->isDirty()){
-            return response()->json(['error'=>"Specify value to update",'code'=>422],422);
+           return $this->ErrorResponse("Specify value to update",422);
             
             }
         
         $user->save();
-        return response()->json(['data'=>$user],200);
+       return $this->SuccessResponse($user);
 
     }
 
@@ -139,7 +138,7 @@ class UserController extends ApiController
     {
          $user = User::findOrFail($id);
          $user->delete();
-         return response()->json(['data'=>$user],200);
+         return $this->SuccessResponse($user);
         
     }
 }

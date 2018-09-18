@@ -50,7 +50,7 @@ class User extends Authenticatable
     }
 
     public function isVerified(){
-        dd($this->verified , User::VERIFIED_USER,$this->verification_token);
+        // dd($this->verified , User::VERIFIED_USER,$this->verification_token);
         $this->verified == User::VERIFIED_USER;
     }
     public function isAdmin(){

@@ -8,19 +8,25 @@ use Illuminate\Support\Collection;
 trait ApiResponser
 {
 	protected function SuccessResponse($data,$message='Success',$code=200){
-		$result['error'] = [];
-		$result['success'] = 1;
-		$result['data'] = $data;
-		// $result['data']['message'] = $message;	
-		return response()->json($result,$code);
+		
+
+        $response['error'] = array(); 
+        $response['data'] = $data;
+        if(!empty($message))
+         $response['data']['message'] = $message;
+        $response['success'] = 1; 
+
+		return response()->json($response,$code);
 	}
 
-	protected function ErrorResponse($message='Success',$code=400){
+	protected function ErrorResponse($message='Error',$code=400){
 
-		$result['error'] = $message;
-		$result['success'] = 0;
-		$result['data'] = [];
-		return response()->json($result,$code);
+		 if(!empty($message))
+             $response['error'][] = $message;  
+        
+        $response['data'] = [];  
+        $response['success'] = 0; 
+        return response()->json($response, $code);
 	}
 
 	protected function showAll(Collection $collection,$code=200){

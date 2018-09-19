@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-use App\Traits\ApiResponser;
 use App\Traits\ExceptionTrait;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -11,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 class Handler extends ExceptionHandler
 {
     
-    use ApiResponser,ExceptionTrait;  
+    use ExceptionTrait;  
 
     /**
      * A list of the exception types that are not reported.

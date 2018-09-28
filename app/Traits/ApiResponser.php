@@ -16,6 +16,7 @@ trait ApiResponser
          $response['data']['message'] = $message;
         $response['success'] = 1; 
 
+        // dd($data);
 		return response()->json($response,$code);
 	}
 
@@ -26,6 +27,7 @@ trait ApiResponser
         
         $response['data'] = [];  
         $response['success'] = 0; 
+        // dd($response,$code);
         return response()->json($response, $code);
 	}
 

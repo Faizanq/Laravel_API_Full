@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use SoftDeletes;
+
 	const AVAILABLE_PRODUCT = 1;
 	const UNAVAILABLE_PRODUCT = 0;
     protected $fillable =[
@@ -19,6 +21,8 @@ class Product extends Model
     		'image',
     		'seller_id'
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function isAvailable(){
     	$this->status == Product::AVAILABLE_PRODUCT;

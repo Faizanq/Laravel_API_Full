@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 use Response;
+use Symfony\Component\Debug\Exception\FatalErrorException;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -33,6 +34,9 @@ trait ExceptionTrait {
         if($exep instanceof FatalThrowableError){
             return $this->isFatal($req,$exep);
         }
+        if($exep instanceof FatalErrorException){
+            return $this->isFatalError($req,$exep);
+        }
         if($exep instanceof AuthorizationException){
             return $this->isAuthorized($req,$exep);
         }
@@ -40,7 +44,7 @@ trait ExceptionTrait {
         if($exep instanceof HttpException){
             return $this->isOther($req,$exep);
         }
-        
+
         return parent::render($req,$exep);
     }
     protected function isModel($req,$exep){
@@ -70,12 +74,15 @@ trait ExceptionTrait {
         }else
         return $this->ErrorResponse($message="Something went wrong!",$status = 404);
     }
-     protected function isFatal($req,$exep){
+    protected function isFatal($req,$exep){
             $message = $exep->getMessage().' on line number '.$exep->getLine();
         return $this->ErrorResponse($message=$message,$status = 404);
     }
-
-     protected function isOther($req,$exep){
+    protected function isFatalError($req,$exep){
+            $message = $exep->getMessage().' on line number '.$exep->getLine();
+        return $this->ErrorResponse($message=$message,$status = 404);
+    }
+    protected function isOther($req,$exep){
         return $this->ErrorResponse($message=$exep->getMessage(),$exep->getStatusCode());
     }
     
